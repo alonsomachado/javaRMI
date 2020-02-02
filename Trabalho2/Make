@@ -1,0 +1,6 @@
+docker network create --driver bridge cdnt2alonso
+docker image build ./servidor -t servidorrmi
+docker image build ./cliente -t clientermi
+docker run -dit -p 1099:1099 --name servidor --network cdnt2alonso -v servervol:/serverdata servidorrmi ash
+docker run -dit --name cliente --network cdnt2alonso -v clientvol:/clientdata clientermi ash
+docker exec -it servidor ash
